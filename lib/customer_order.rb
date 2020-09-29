@@ -10,8 +10,13 @@ class CustomerOrder
   end
 
   def add(item)
-    price = @data[0]["prices"][0]
-    @orders[item] = {price: price[item], quantity: 1}
+    item_prices = @data[0]["prices"][0]
+    if @orders[item] 
+      @orders[item][:quantity] += 1 
+      @orders[item][:price] = item_prices[item] * @orders[item][:quantity]
+    else
+       @orders[item] = {price: item_prices[item], quantity: 1}
+    end
   end
 
   def print
