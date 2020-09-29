@@ -18,7 +18,7 @@ class CustomerOrder
     end
   end
 
-  def print
+  def list
     listed_orders = []
 
     @orders.each do |item, values|
@@ -26,6 +26,14 @@ class CustomerOrder
     end
 
     listed_orders.join("\n")
+  end
+
+  def total
+    sum = 0
+    @orders.each do |item, values|
+      sum += values[:price]
+    end
+    sum
   end
 
   private 

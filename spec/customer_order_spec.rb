@@ -15,18 +15,28 @@ describe 'Customer Order' do
   it "prints single order" do
     item = "Cafe Latte"
     subject.add(item)
-    expect(subject.print).to eq "#{item} 1 x #{prices[item]}"
+    expect(subject.list).to eq "#{item} 1 x #{prices[item]}"
   end
 
-  it "prints multiple orders" do
-    subject.add("Cappucino")
-    2.times { subject.add("Cafe Latte") }
-    3.times { subject.add("Flat White") }
+  context 'calculate orders' do
+    before(:each) do
+      subject.add("Cappucino")
+      2.times { subject.add("Cafe Latte") }
+      3.times { subject.add("Flat White") }
 
-    order_statement = "Cappucino 1 x #{prices["Cappucino"]}\n" 
-    order_statement += "Cafe Latte 2 x #{prices["Cafe Latte"] * 2}\n"
-    order_statement += "Flat White 3 x #{prices["Flat White"] * 3}"
+      @order_statement = "Cappucino 1 x #{prices["Cappucino"]}\n" 
+      @order_statement += "Cafe Latte 2 x #{prices["Cafe Latte"] * 2}\n"
+      @order_statement += "Flat White 3 x #{prices["Flat White"] * 3}"
 
-    expect(subject.print).to eq order_statement
+      @total = prices["Cappucino"] + (prices["Cafe Latte"] * 2) + (prices["Flat White"] * 3)
+    end
+
+    it "prints multiple orders" do
+      expect(subject.list).to eq @order_statement
+    end
+
+    it "calculates total" do
+      expect(subject.total).to eq @total
+    end
   end
 end
