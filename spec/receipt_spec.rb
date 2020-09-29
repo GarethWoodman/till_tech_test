@@ -13,9 +13,12 @@ describe 'Receipt' do
     @name = "The Coffee Connection"
     @address = "123 Lakeside Way"
     @number = "+1 (650) 360-0708"
+    @table = '1'
+    @customers = ['Max', 'Sam', 'Deb', 'Sarah']
+    @table_details = "Table #{@table} / #{@customers.length}" + "\n" + "#{@customers.join(',')}"
   end
 
-  subject { Receipt.new(@name, @address, @number, voucher) }
+  subject { Receipt.new(@name, @address, @number, voucher, @table, @customers) }
 
   it "prints current date and time" do
     expect(subject.dateTime).to eq @currentDateTime
@@ -35,5 +38,9 @@ describe 'Receipt' do
 
   it "includes voucher" do
     expect(subject.voucher).to be_an_instance_of Voucher
+  end
+
+  it "prints table details" do
+    expect(subject.table_details).to eq @table_details
   end
 end
