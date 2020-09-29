@@ -5,4 +5,9 @@ class Voucher
     @percentage = percentage
     @name = name
   end
+
+  def offer
+    "Voucher #{@percentage}% Off All #{@name}"
+  end
+
 end
