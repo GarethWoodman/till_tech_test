@@ -13,7 +13,6 @@ class CustomerOrder
     item_prices = @data[0]["prices"][0]
     if @orders[item] 
       @orders[item][:quantity] += 1 
-      @orders[item][:price] = item_prices[item] * @orders[item][:quantity]
     else
        @orders[item] = {price: item_prices[item], quantity: 1}
     end
@@ -23,7 +22,7 @@ class CustomerOrder
     listed_orders = []
 
     @orders.each do |item, values|
-      listed_orders << "#{item} #{values[:quantity]} x #{values[:price]}"
+      listed_orders << "#{item} #{values[:quantity]} x #{ '%.2f' % values[:price]}"
     end
 
     listed_orders.join("\n")
@@ -32,7 +31,7 @@ class CustomerOrder
   def total
     sum = 0
     @orders.each do |item, values|
-      sum += values[:price]
+      sum += ( values[:price] * values[:quantity] )
     end
     '%.2f' % sum
   end

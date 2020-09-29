@@ -25,8 +25,8 @@ describe 'Customer Order' do
       3.times { subject.add("Flat White") }
 
       @order_statement = "Cappucino 1 x #{prices["Cappucino"]}\n" 
-      @order_statement += "Cafe Latte 2 x #{prices["Cafe Latte"] * 2}\n"
-      @order_statement += "Flat White 3 x #{prices["Flat White"] * 3}"
+      @order_statement += "Cafe Latte 2 x #{prices["Cafe Latte"]}\n"
+      @order_statement += "Flat White 3 x #{prices["Flat White"]}"
 
       @total = prices["Cappucino"] + (prices["Cafe Latte"] * 2) + (prices["Flat White"] * 3)
       
