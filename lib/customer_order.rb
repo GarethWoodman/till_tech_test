@@ -34,11 +34,11 @@ class CustomerOrder
     @orders.each do |item, values|
       sum += values[:price]
     end
-    sum
+    '%.2f' % sum
   end
 
   def tax
-    total * @tax_rate
+    '%.2f' % (total.to_f * @tax_rate)
   end
 
   private 
