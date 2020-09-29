@@ -17,6 +17,6 @@ class Voucher
   end
 
   def print
-    "#{offer} \n #{valid_dates}"
+    "#{offer}\n#{valid_dates}"
   end
 end

@@ -16,7 +16,7 @@ class Receipt
   end
 
   def table_details 
-    "Table #{@table} / #{@customers.length}" + "\n" + "#{@customers.join(',')}"
+    "Table #{@table} / [#{@customers.length}]\n#{@customers.join(',')}"
   end
 
   def print
@@ -27,8 +27,8 @@ class Receipt
     printed_receipt += @voucher.print + "\n"
     printed_receipt += table_details + "\n"
     printed_receipt += "#{@customer_order.list}\n\n"
-    printed_receipt += "#{@customer_order.tax}\n"
-    printed_receipt += "#{@customer_order.total}"
+    printed_receipt += "Tax: #{@customer_order.tax}\n"
+    printed_receipt += "Total: #{@customer_order.total}"
 
     printed_receipt
   end

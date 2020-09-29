@@ -16,7 +16,7 @@ describe 'Receipt' do
     @number = "+1 (650) 360-0708"
     @table = '1'
     @customers = ['Max', 'Sam', 'Deb', 'Sarah']
-    @table_details = "Table #{@table} / #{@customers.length}" + "\n" + "#{@customers.join(',')}"
+    @table_details = "Table #{@table} / [#{@customers.length}]" + "\n" + "#{@customers.join(',')}"
   end
 
   subject { Receipt.new(@name, @address, @number, voucher, @table, @customers, customer_order) }
@@ -57,8 +57,8 @@ describe 'Receipt' do
     printed_receipt += subject.voucher.print + "\n"
     printed_receipt += @table_details + "\n"
     printed_receipt += "#{subject.customer_order.list}\n\n"
-    printed_receipt += "#{subject.customer_order.tax}\n"
-    printed_receipt += "#{subject.customer_order.total}"
+    printed_receipt += "Tax: #{subject.customer_order.tax}\n"
+    printed_receipt += "Total: #{subject.customer_order.total}"
 
     puts printed_receipt
 
