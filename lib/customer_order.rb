@@ -6,6 +6,7 @@ class CustomerOrder
   def initialize
     get_json
     @orders = {}
+    @tax_rate = 0.0864
   end
 
   def add(item)
@@ -34,6 +35,10 @@ class CustomerOrder
       sum += values[:price]
     end
     sum
+  end
+
+  def tax
+    total * @tax_rate
   end
 
   private 

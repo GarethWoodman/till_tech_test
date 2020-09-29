@@ -29,6 +29,7 @@ describe 'Customer Order' do
       @order_statement += "Flat White 3 x #{prices["Flat White"] * 3}"
 
       @total = prices["Cappucino"] + (prices["Cafe Latte"] * 2) + (prices["Flat White"] * 3)
+      @tax = @total * 0.0864
     end
 
     it "prints multiple orders" do
@@ -37,6 +38,10 @@ describe 'Customer Order' do
 
     it "calculates total" do
       expect(subject.total).to eq @total
+    end
+
+    it "calculates tax" do
+      expect(subject.tax).to eq @tax
     end
   end
 end
