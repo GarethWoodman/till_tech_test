@@ -1,6 +1,11 @@
 require './lib/receipt'
 require './lib/voucher'
+require './spec/helpers'
 require 'date'
+
+RSpec.configure do |c|
+  c.include Helpers
+end
 
 describe 'Receipt' do
   before :each do
@@ -8,10 +13,9 @@ describe 'Receipt' do
     @name = "The Coffee Connection"
     @address = "123 Lakeside Way"
     @number = "+1 (650) 360-0708"
-    @voucher = Voucher.new(10, 'Muffins')
   end
 
-  subject { Receipt.new(@name, @address, @number, @voucher) }
+  subject { Receipt.new(@name, @address, @number, voucher) }
 
   it "prints current date and time" do
     expect(subject.dateTime).to eq @currentDateTime
@@ -29,7 +33,7 @@ describe 'Receipt' do
     expect(subject.number).to eq @number
   end
 
-  it "prints voucher offer" do
-    expect(subject.voucher.offer).to eq @voucher.offer
+  it "includes voucher" do
+    expect(subject.voucher).to be_an_instance_of Voucher
   end
 end
