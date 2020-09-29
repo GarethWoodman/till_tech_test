@@ -1,9 +1,10 @@
 require 'date'
 
 class Receipt
-  attr_reader :dateTime
+  attr_reader :dateTime, :name
 
-  def initialize
-   @dateTime = DateTime.now().strftime("%Y.%m.%d %H:%M:%S")
+  def initialize(name)
+    @name = name
+    @dateTime = DateTime.now().strftime("%Y.%m.%d %H:%M:%S")
   end
 end
