@@ -1,5 +1,6 @@
 require './lib/receipt'
 require './lib/voucher'
+require './lib/customer_order'
 require './spec/helpers'
 require 'date'
 
@@ -18,7 +19,7 @@ describe 'Receipt' do
     @table_details = "Table #{@table} / #{@customers.length}" + "\n" + "#{@customers.join(',')}"
   end
 
-  subject { Receipt.new(@name, @address, @number, voucher, @table, @customers) }
+  subject { Receipt.new(@name, @address, @number, voucher, @table, @customers, customer_order) }
 
   it "prints current date and time" do
     expect(subject.dateTime).to eq @currentDateTime
@@ -42,5 +43,9 @@ describe 'Receipt' do
 
   it "prints table details" do
     expect(subject.table_details).to eq @table_details
+  end
+
+  it "includes customer orders" do
+    expect(subject.customer_order).to be_an_instance_of CustomerOrder
   end
 end

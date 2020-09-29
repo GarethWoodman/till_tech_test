@@ -1,6 +1,5 @@
 require "json"
 
-
 class CustomerOrder
   attr_reader :orders
 
