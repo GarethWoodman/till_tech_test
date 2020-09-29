@@ -11,7 +11,7 @@ module Helpers
 
     customer_order.add("Cafe Latte")
     2.times { customer_order.add("Cafe Latte") }
-    customer_order.add("Cappuccino")
+    customer_order.add("Cappucino")
     2.times { customer_order.add("Choc Mudcake") }
     customer_order.add("Choc Mousse")
     customer_order.add("Affogato")

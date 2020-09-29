@@ -18,4 +18,18 @@ class Receipt
   def table_details 
     "Table #{@table} / #{@customers.length}" + "\n" + "#{@customers.join(',')}"
   end
+
+  def print
+    printed_receipt = @dateTime + "\n"
+    printed_receipt += @name + "\n\n"
+    printed_receipt += @address + "\n"
+    printed_receipt += @number + "\n.\n"
+    printed_receipt += @voucher.print + "\n"
+    printed_receipt += table_details + "\n"
+    printed_receipt += "#{@customer_order.list}\n\n"
+    printed_receipt += "#{@customer_order.tax}\n"
+    printed_receipt += "#{@customer_order.total}"
+
+    printed_receipt
+  end
 end

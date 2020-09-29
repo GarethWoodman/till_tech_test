@@ -15,4 +15,8 @@ class Voucher
   def valid_dates
     "Valid #{@date_from} to #{@date_to}"
   end
+
+  def print
+    "#{offer} \n #{valid_dates}"
+  end
 end

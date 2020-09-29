@@ -48,4 +48,20 @@ describe 'Receipt' do
   it "includes customer orders" do
     expect(subject.customer_order).to be_an_instance_of CustomerOrder
   end
+
+  it "prints complete receipt" do
+    printed_receipt = @currentDateTime + "\n"
+    printed_receipt += @name + "\n\n"
+    printed_receipt += @address + "\n"
+    printed_receipt += @number + "\n.\n"
+    printed_receipt += subject.voucher.print + "\n"
+    printed_receipt += @table_details + "\n"
+    printed_receipt += "#{subject.customer_order.list}\n\n"
+    printed_receipt += "#{subject.customer_order.tax}\n"
+    printed_receipt += "#{subject.customer_order.total}"
+
+    puts printed_receipt
+
+    expect(subject.print).to eq printed_receipt
+  end
 end
